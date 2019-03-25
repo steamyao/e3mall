@@ -1,0 +1,29 @@
+<html>
+   <head>
+       <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+       <title>${title}</title>
+   </head>
+   <body>
+   学生的姓名：${stu.name}
+
+   <br/>
+   学生列表： <br/>
+   <table border="1">
+       <tr>
+           <th>学号</th>
+           <th>姓名</th>
+           <th>年龄</th>
+           <th>家庭住址</th>
+       </tr>
+       <#list stuList as student>
+           <tr>
+               <td>${student.id}</td>
+               <td>${student.name}</td>
+               <td>${student.age}</td>
+               <td>${student.address}</td>
+           </tr>
+       </#list>
+   </table>
+
+   </body>
+</html>

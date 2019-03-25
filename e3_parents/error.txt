@@ -1,0 +1,110 @@
+2019.1.25
+1.阿里云服务器端口要开放
+2.关闭防火墙
+3.配置dubbo 注册 与发布
+4.JRebel 与 IDEA Tomcat IDEA 配合 ？？？
+5.ClassNotFind（jar包已经存在的情况下）：clean compile install jar包一遍
+6. install 打包发布到本地仓库   deploy 发布到私服
+1.27
+1.dubbo-admin-2.6（监控中心 root root） 适合JDK1.8
+2.实现web的热部署
+
+1.30
+1.云服务器暴露80端口  给nginx
+2. 按照指导重新配置dubbo生产者  和  消费者
+3.将页面所要的参数 封装成对象  存在 commmom包(jar)下 注意要compile 和install
+
+2.4
+1.上传图片按钮 需要FLASH插件支持
+2.解决nginx问题：
+nginx: [error] open() "/export/servers/nginx/logs/nginx.pid" failed (2: No such file or directory)
+  首先你要先确保关闭nginx进程了（可以通过pkill -9 nginx关闭进程）
+/usr/local/nginx/sbin/nginx -c /usr/local/nginx/conf/nginx.conf
+https://www.cnblogs.com/chiangchou/p/fastdfs.html
+https://blog.csdn.net/a623982022/article/details/78878209
+https://blog.csdn.net/hiqingtian/article/details/79413471
+3..NoSuchMethodError:
+  首先通过maven Helper 查看是否是jar包依赖问题 排除后 在compile 和install报错的类
+4.插看类的方法：Alt+7
+5.优化IDEA
+
+2.5
+1.部署content工程
+2.启动tomcat显示build success但无法继续启动的解决方法
+  在tomcat的configuration中添加   <ignorePackaging>true</ignorePackaging> 告诉tomcat忽略当前是否有war包
+3.jsp的默认路径是webapp
+
+2.6
+1.intellij 关闭提示“found duplicate code”
+打开File → Settings → Editor → Inspections. 在出现的搜索Duplicated Code ,回车,取消掉Duplicated Code后面的钩钩,然后OK即可取消提示。
+2. https://www.cnblogs.com/hq233/p/7146264.html
+   https://blog.csdn.net/u011410529/article/details/66974974
+
+2.8
+1.关于tomcat成功启动但访问不了欢迎界面的问题(404)
+   在root目录下新增index.html
+
+
+2.12
+  关于/*与/的区别，
+  　　<url-pattern>/</url-pattern>  会匹配到/login这样的路径型url，不会匹配到模式为*.jsp这样的后缀型url
+  　　<url-pattern>/*</url-pattern> 会匹配所有url：路径型的和后缀型的url(包括/login,*.jsp,*.js和*.html等)
+  https://www.cnblogs.com/jacksonlee/articles/9361290.html
+2 解决content的tomcat启动问题：
+   将content的tomcat插件  移至content_service 以后必须更新content_interface 的 jar包
+
+2.13
+1.todo  未完成的作业  day05
+2. redis 解压是redis-3.0.0  安装是redis
+3.linux 查看端口占用  netstat -tunlp|grep 8080
+        查看进程  ps aux|grep redis
+        https://www.cnblogs.com/it-cen/p/4295984.html
+       [root@localhost bin]# ./redis-cli  连接redis服务
+2.14
+1.https://www.cnblogs.com/carryping/p/7447823.html(解决ruby 2.0 问题 升级至 2.3)
+  https://www.cnblogs.com/yuanermen/p/5717885.html
+  https://yq.aliyun.com/articles/503070?spm=a2c4e.11153987.0.0.4ee72d497AXQEa(玄学查看redis节点)
+/usr/local/redis-3.2.1/src/redis-trib.rb check 39.108.0.169:7002(检查节点问题)
+
+ /usr/local/redis-3.2.1/src/redis-trib.rb  create  --replicas  1  39.108.0.169:7001 39.108.0.169:7002  39.108.0.169:7003 39.108.0.169:7004  39.108.0.169:7005  39.108.0.169:7006
+redis关闭  到redis节点目录下执行如下命令  redis-cli -p 端口号 shutdown
+redis启动  ./redis-server 参数    参数：redis.conf文件全路径
+
+ 2.在redis.conf 中屏蔽bind 是所有IP均能访问
+https://www.cnblogs.com/lmy2018/p/8514787.html
+在redis3.2之后，redis增加了protected-mode，在这个模式下，即使注释掉了bind 127.0.0.1，再访问redisd时候还是报错
+修改办法：protected-mode no
+
+
+2.15
+1.https://blog.csdn.net/truong/article/details/52531103
+  https://blog.csdn.net/qiushisoftware/article/details/78837855
+  https://blog.csdn.net/xiaojin21cen/article/details/70445545
+  redis集群部署完成 测试成功
+
+2.16
+1.配置运行两个tomcat  https://blog.csdn.net/wdy_2099/article/details/72627917
+  8051  8088  8090
+  不止要改端口  还要改配置文件 vim startup.sh 配置文件要在开头
+  content-service   8083
+         - web      8084
+   manager-service  8080
+          - web     8082
+    search -service 8081
+            -web    8085
+
+     item-web      8086
+
+     sso -service  8087
+          -web     8088
+
+      car -web      8089
+
+      order - service 8090
+             -web    8091
+亮点：
+Long类型是为了避免使用浮点数类型（Float），价格精确到分，也就是由原来的以元单位的价格乘以100倍（数据库中的价格存储的都是以分为单位的价格）
+
+
+java.lang.NoClassDefFoundError: org/apache/commons/pool2/impl/GenericObjectPoolConfig
+

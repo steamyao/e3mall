@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.2.xsd
+        http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.2.xsd
+         http://code.alibabatech.com/schema/dubbo http://code.alibabatech.com/schema/dubbo/dubbo.xsd
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.2.xsd">
+   <!--加载配置文件-->
+    <!-- 加载配置文件 -->
+    <context:component-scan base-package="cn.e3mall.order.controller" />
+    <context:property-placeholder location="classpath:conf/*.properties" />
+    <mvc:annotation-driven />
+    <bean
+            class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="prefix" value="/WEB-INF/jsp/" />
+        <property name="suffix" value=".jsp" />
+    </bean>
+
+    <mvc:resources location="/js/" mapping="/js/**"/>
+    <mvc:resources location="/css/" mapping="/css/**"/>
+    <mvc:resources location="/images/" mapping="/images/**"/>
+
+    <!-- 拦截器配置 -->
+    <mvc:interceptors>
+        <mvc:interceptor>
+            <!-- 去结算超链接，http://localhost:8089/order/order-cart.html -->
+            <mvc:mapping path="/order/**"/>
+            <bean class="cn.e3mall.order.interceptor.LoginInterceptor"></bean>
+        </mvc:interceptor>
+    </mvc:interceptors>
+
+
+    <!-- 引用dubbo服务 -->
+    <dubbo:application name="e3-order-web"/>
+    <dubbo:registry protocol="zookeeper" address="39.108.0.169:2181"/>
+    <dubbo:reference interface="cn.e3mall.order.service.OrderService" id="orderService"/>
+    <dubbo:reference interface="cn.e3mall.sso.service.UserLoginService" id="userLoginService"/>
+
+
+</beans>

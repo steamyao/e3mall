@@ -1,0 +1,11 @@
+0:0:0:0:0:0:0:1 - - [25/Mar/2019:11:19:20 +0800] "GET /cart/add/1266619.html?num=2 HTTP/1.1" 200 18544 http-bio-8089-exec-1 567
+0:0:0:0:0:0:0:1 - - [25/Mar/2019:11:19:20 +0800] "GET /favicon.ico HTTP/1.1" 404 973 http-bio-8089-exec-2 6
+0:0:0:0:0:0:0:1 - - [25/Mar/2019:11:19:20 +0800] "GET /favicon.ico HTTP/1.1" 404 973 http-bio-8089-exec-3 4
+0:0:0:0:0:0:0:1 - - [25/Mar/2019:11:19:22 +0800] "GET /cart/cart.html HTTP/1.1" 200 21467 http-bio-8089-exec-7 124
+0:0:0:0:0:0:0:1 - - [25/Mar/2019:11:23:52 +0800] "GET /cart/cart.html HTTP/1.1" 200 16239 http-bio-8089-exec-10 16
+0:0:0:0:0:0:0:1 - - [25/Mar/2019:11:24:40 +0800] "GET /cart/cart.html HTTP/1.1" 200 16239 http-bio-8089-exec-10 24
+0:0:0:0:0:0:0:1 - - [25/Mar/2019:11:24:56 +0800] "GET /cart/cart.html HTTP/1.1" 200 16239 http-bio-8089-exec-10 7
+0:0:0:0:0:0:0:1 - - [25/Mar/2019:11:25:17 +0800] "GET /cart/add/1220039.html?num=1 HTTP/1.1" 200 18544 http-bio-8089-exec-10 147
+0:0:0:0:0:0:0:1 - - [25/Mar/2019:11:25:19 +0800] "GET /cart/cart.html HTTP/1.1" 200 18063 http-bio-8089-exec-10 21
+0:0:0:0:0:0:0:1 - - [25/Mar/2019:11:25:22 +0800] "POST /cart/update/num/http://localhost:8089/cart/1220039/2.action HTTP/1.1" 404 949 http-bio-8089-exec-10 7
+0:0:0:0:0:0:0:1 - - [25/Mar/2019:11:25:24 +0800] "POST /cart/update/num/http://localhost:8089/cart/1220039/1.action HTTP/1.1" 404 949 http-bio-8089-exec-10 4
